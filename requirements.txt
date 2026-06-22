@@ -9,6 +9,9 @@ celery
 python-dotenv
 httpx
 python-json-logger
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
 
 # AI - Computer Vision
 torch
