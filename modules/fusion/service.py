@@ -1,6 +1,7 @@
 from sentinel_x.modules.vision.service import vision_service
 from sentinel_x.modules.nlp.service import nlp_service
 from sentinel_x.modules.satellite.service import satellite_service
+from sentinel_x.modules.fusion.anomaly import anomaly_detector
 from sentinel_x.db.mongodb import get_database
 from datetime import datetime
 import numpy as np
@@ -34,7 +35,15 @@ class FusionService:
                 date_range=("NOW-1MONTH", "NOW")
             )
 
-        # 4. Save to MongoDB
+        # 4. Anomaly Detection
+        # Extract numerical features for the detector
+        vision_count = len(report["findings"].get("vision", []))
+        nlp_prob = report.get("findings", {}).get("nlp", {}).get("probability", 0)
+        features = [vision_count, nlp_prob]
+        
+        report["anomaly_status"] = "ANOMALY" if anomaly_detector.detect(features) == -1 else "NORMAL"
+
+        # 5. Save to MongoDB
         db = get_database()
         if db is not None:
             await db.intelligence.insert_one(report)
