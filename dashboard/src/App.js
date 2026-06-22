@@ -2,8 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+import Portal from './components/Portal';
+import './components/Portal.css';
 
 const SentinelDashboard = () => {
+    const [view, setView] = useState('portal'); // 'portal' or 'dashboard'
     const [reports, setReports] = useState([]);
     const [selectedReport, setSelectedReport] = useState(null);
 
@@ -17,6 +20,10 @@ const SentinelDashboard = () => {
     useEffect(() => {
         setReports(initialReports);
     }, []);
+
+    if (view === 'portal') {
+        return <Portal onEnter={() => setView('dashboard')} />;
+    }
 
     return (
         <div className="sentinel-dashboard dark-mode">
