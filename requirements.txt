@@ -1,0 +1,57 @@
+fastapi
+uvicorn[standard]
+gunicorn
+python-multipart
+pydantic-settings
+motor
+redis
+celery
+python-dotenv
+httpx
+
+# AI - Computer Vision
+torch
+torchvision
+torchaudio
+ultralytics
+opencv-python
+segment-anything
+insightface
+# GaitGraph2 and CSRNet might need custom installation or specific packages
+# gaitgraph2 (if available)
+
+# AI - NLP & Speech
+faster-whisper
+transformers
+sentence-transformers
+langchain
+langchain-community
+spacy
+pyannote.audio
+ctranslate2
+librosa
+
+# AI - Federated & XAI
+flwr
+opacus
+syft
+mlflow
+shap
+lime
+captum
+
+# GIS & Satellite
+rasterio
+gdal
+fiona
+sentinelsat
+earthengine-api
+stackstac
+pystac-client
+
+# Utilities
+numpy
+pandas
+scipy
+matplotlib
+pytest
