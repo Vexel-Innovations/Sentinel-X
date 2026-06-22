@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 from sentinel_x.modules.vision.router import router as vision_router
 from sentinel_x.modules.nlp.router import router as nlp_router
+from sentinel_x.modules.fusion.router import router as fusion_router
 
 api_router = APIRouter()
 
@@ -10,7 +11,4 @@ async def health_check():
 
 api_router.include_router(vision_router, prefix="/vision", tags=["vision"])
 api_router.include_router(nlp_router, prefix="/nlp", tags=["nlp"])
-# api_router.include_router(satellite.router, prefix="/satellite", tags=["satellite"])
-# api_router.include_router(nlp.router, prefix="/nlp", tags=["nlp"])
-# api_router.include_router(federated.router, prefix="/federated", tags=["federated"])
-# api_router.include_router(fusion.router, prefix="/fusion", tags=["fusion"])
+api_router.include_router(fusion_router, prefix="/fusion", tags=["fusion"])
