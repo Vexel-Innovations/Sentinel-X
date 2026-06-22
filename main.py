@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from sentinel_x.core.config import settings
 from sentinel_x.api.v1.router import api_router
 from sentinel_x.db.mongodb import connect_to_mongo, close_mongo_connection
+from sentinel_x.core.exceptions import global_exception_handler
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -20,6 +21,9 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix=settings.API_V1_STR)
+
+# Register Global Exception Handler
+app.add_exception_handler(Exception, global_exception_handler)
 
 @app.on_event("startup")
 async def startup_db_client():
@@ -39,4 +43,4 @@ async def root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)

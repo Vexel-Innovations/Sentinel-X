@@ -8,6 +8,7 @@ redis
 celery
 python-dotenv
 httpx
+python-json-logger
 
 # AI - Computer Vision
 torch
