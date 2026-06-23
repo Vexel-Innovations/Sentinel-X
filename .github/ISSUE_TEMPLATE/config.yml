@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/Vexel-Innovations/Sentinel-X/discussions
+    about: Ask questions, share ideas, and connect with the Sentinel-X community.
+  - name: 📖 Documentation
+    url: https://github.com/Vexel-Innovations/Sentinel-X/wiki
+    about: Check the Wiki for guides, API docs, and architecture references.
